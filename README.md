@@ -1,1 +1,1 @@
-basic linux
+Shell permisions on going
