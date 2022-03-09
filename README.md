@@ -1,1 +1,1 @@
-Shell redirections
+More on shell expansions
