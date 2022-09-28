@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#install haproxy as load balancer and configure it to direct traffic
+
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+sudo sed -i "$ a\listen load_balancer 0.0.0.0:80\n\tmode http\n\tbalance roundrobin\n\toption forwardfor\n\toption httpclose\n\tserver 46-web-01 34.73.151.27:80 check\n\tserver 46-web-02 34.75.187.116:80 check" /etc/haproxy/haproxy.cfg
+sudo service haproxy start
